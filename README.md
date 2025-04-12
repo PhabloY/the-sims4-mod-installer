@@ -17,7 +17,6 @@ Ideal para quem quer instalar arquivos `.package` e `.ts4script` de forma rápid
 
 ## 🖼️ Interface
 
-> *(adicione uma imagem aqui quando subir o projeto)*  
 > ![Preview](https://i.imgur.com/vPNgT2o.png)
 
 ---
