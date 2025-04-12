@@ -1,0 +1,48 @@
+# Bytecode do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Cache do mypy
+.mypy_cache/
+
+# Arquivos temporários
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Diretórios temporários do sistema
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Ambientes virtuais
+env/
+venv/
+ENV/
+VENV/
+.venv/
+
+# Arquivos do VSCode
+.vscode/
+
+# Arquivos do PyCharm
+.idea/
+
+# Arquivos do Windows
+*.lnk
+
+# Arquivos do OneDrive
+*.tmp.drivedownload
+*.tmp.driveupload
+*.gdoc
+*.gsheet
+*.glink
+
+# Pastas comuns de build/distribuição
+build/
+dist/
+*.egg-info/
