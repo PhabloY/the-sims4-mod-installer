@@ -10,7 +10,7 @@ import tempfile
 # Default Mods folder path
 DEFAULT_MODS_PATH = os.path.join(
     os.path.expanduser("~"),
-    "Documents",
+    "Documentos",
     "Electronic Arts",
     "The Sims 4",
     "Mods"
@@ -36,7 +36,6 @@ def select_destination_folder():
 
 def install_mod():
     zip_path = mod_path_var.get()
-    # Use default if no folder selected
     destination_folder = destination_var.get() or DEFAULT_MODS_PATH
 
     if not zip_path or not zip_path.endswith(".zip"):
@@ -103,30 +102,64 @@ def install_mod():
 # Interface
 app = tk.Tk()
 app.title("The Sims 4 Mod Installer")
-app.geometry("500x250")
-app.configure(bg="#2e2e2e")  # Dark background
+app.geometry("500x300")
+app.configure(bg="#F0F4F8")  # Soft background color
 
 # Base styling
-label_style = {"bg": "#2e2e2e", "fg": "white", "font": ("Arial", 11)}
-entry_style = {"bg": "#444", "fg": "white",
-               "insertbackground": "white", "font": ("Arial", 10)}
-button_style = {"bg": "#5cb85c", "fg": "white",
-                "activebackground": "#4cae4c", "font": ("Arial", 10, "bold")}
+label_style = {"bg": "#F0F4F8", "fg": "#3C3C3C", "font": ("Arial", 12)}
+entry_style = {"bg": "#E0E8F0", "fg": "#3C3C3C",
+               "insertbackground": "#3C3C3C", "font": ("Arial", 10), "bd": 2}
+button_style = {
+    "bg": "#5A5A5A", "fg": "white",
+    "activebackground": "#4A4A4A", "font": ("Arial", 10),
+    "relief": "flat", "bd": 0, "padx": 15, "pady": 8, "width": 12, "height": 1
+}
+
+
+def on_hover(event, button):
+    button.config(bg="#4A4A4A")
+
+
+def on_leave(event, button):
+    button.config(bg="#5A5A5A")
+
 
 mod_path_var = tk.StringVar()
 destination_var = tk.StringVar()
 
+# Labels and Entries
 tk.Label(app, text="Mod file (.zip) path:", **label_style).pack(pady=(15, 5))
-tk.Entry(app, textvariable=mod_path_var, width=60, **entry_style).pack()
-tk.Button(app, text="Select File", command=select_mod,
-          **button_style).pack(pady=8)
+tk.Entry(app, textvariable=mod_path_var, width=60,
+         **entry_style).pack(pady=(5, 10))
+select_file_button = tk.Button(
+    app, text="Select File", command=select_mod, **button_style)
+select_file_button.pack(pady=5)
 
 tk.Label(app, text="Destination folder (Mods):", **label_style).pack(pady=5)
-tk.Entry(app, textvariable=destination_var, width=60, **entry_style).pack()
-tk.Button(app, text="Select Folder",
-          command=select_destination_folder, **button_style).pack(pady=8)
+tk.Entry(app, textvariable=destination_var,
+         width=60, **entry_style).pack(pady=(5, 10))
+select_folder_button = tk.Button(
+    app, text="Select Folder", command=select_destination_folder,
+    **button_style
+)
+select_folder_button.pack(pady=5)
 
-tk.Button(app, text="Install Mod", command=install_mod,
-          **button_style).pack(pady=15)
+install_button = tk.Button(app, text="Install Mod",
+                           command=install_mod, **button_style)
+install_button.pack(pady=20)
+
+# Adding hover effects
+select_file_button.bind("<Enter>", lambda event,
+                        button=select_file_button: on_hover(event, button))
+select_file_button.bind("<Leave>", lambda event,
+                        button=select_file_button: on_leave(event, button))
+select_folder_button.bind("<Enter>", lambda event,
+                          button=select_folder_button: on_hover(event, button))
+select_folder_button.bind("<Leave>", lambda event,
+                          button=select_folder_button: on_leave(event, button))
+install_button.bind("<Enter>", lambda event,
+                    button=install_button: on_hover(event, button))
+install_button.bind("<Leave>", lambda event,
+                    button=install_button: on_leave(event, button))
 
 app.mainloop()
